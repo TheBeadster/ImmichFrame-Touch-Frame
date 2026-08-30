@@ -23,6 +23,8 @@ The splitter is passive: the supply must be **5V**, centre-positive. Do not feed
 
 Install Docker Compose on the same LAN as Immich. Clone this repo, copy `.env.example` to `.env`, and set `HOST_IP` to the Docker host's LAN address.
 
+The original build runs both Immich and this frame stack in Docker on a Windows 11 PC. A Linux Docker host works too; the important bit is that the X88 can reach ports 2283, 8080 and 8081 over the LAN.
+
 Copy `config/Settings.example.yml` to `config/Settings.yml`. Set the Immich URL and paste an API key made by the Immich account whose photos will be shown. In Immich: profile picture -> **Account Settings** -> **API Keys**. The current ImmichFrame permissions are:
 
 `album.read`, `album.statistics`, `asset.view`, `asset.read`, `asset.statistics`, `face.read`, `memory.read`, `person.read`, `person.statistics`, `tag.read`.
@@ -70,5 +72,4 @@ docker compose up -d --build
 Back up `.env`, `config/Settings.yml`, `composer-config/frame.yml`, the helper APK, the controller UF2, and the Reticulum identity. Keep API keys and identities out of Git.
 
 Built from the setup described on [Beady's blog](https://www.beady.com/blog/keeping-swmbo-happy-1244555/). Upstream projects: [Immich](https://immich.app/), [ImmichFrame](https://immichframe.dev/), [MeshChatX](https://meshchatx.com/), [Columba](https://github.com/torlando-tech/columba) and [Reticulum](https://reticulum.network/).
-
 
