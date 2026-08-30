@@ -1,0 +1,108 @@
+# Frame Composer configuration. Changes require a page reload, not a container restart.
+schema_version: 1
+default_profile: portrait_three
+
+profiles:
+  portrait_three:
+    title: "Portrait three-panel frame"
+
+    canvas:
+      orientation: portrait
+      aspect_ratio: "9 / 16"
+      background: "#11100e"
+      padding: "0.8vmin"
+      gap: "0.8vmin"
+      columns: "repeat(2, minmax(0, 1fr))"
+      # The main row absorbs the height left by a 9:16 portrait display while
+      # the lower row keeps its two exact 5:4 panels.
+      rows: "minmax(0, 1fr) auto"
+      align_content: stretch
+      border_radius: "0.35vmin"
+
+    slideshow:
+      interval_seconds: 20
+      transition_seconds: 1.5
+      random: true
+
+    selection:
+      # Compare source dimensions with each slot's actual rendered dimensions.
+      resolution_scale: 1.0
+
+    exclude:
+      # Immich tag values are hierarchical, exact and case-sensitive.
+      # Apply this tag to any image that must never appear on the frame.
+      tags:
+        - "ImmichFrame/Ignore"
+      # Match originalPath. Plain folder names match any path segment; full
+      # paths and glob patterns such as "**/Screenshots/**" are also accepted.
+      folders: []
+
+    controls:
+      hide_after_seconds: 7
+
+    slots:
+      - id: main
+        grid_column: "1 / 3"
+        grid_row: "1"
+        # Full-height portrait mode: the main photograph is cropped to fill
+        # the remaining panel instead of leaving large top/bottom margins.
+        fit: cover
+        position: center
+        source:
+          orientation: any
+          # Main images must be at least 0.5 MP and can only be enlarged 15%.
+          minimum_pixels: 500000
+          max_upscale: 1.15
+
+      - id: lower_left
+        grid_column: "1"
+        grid_row: "2"
+        aspect_ratio: "5 / 4"
+        fit: cover
+        position: center
+        source:
+          orientation: landscape
+          # Lower-resolution images are permitted only in the smaller slots.
+          minimum_pixels: 50000
+          max_upscale: 1.5
+
+      - id: lower_right
+        grid_column: "2"
+        grid_row: "2"
+        aspect_ratio: "5 / 4"
+        fit: cover
+        position: center
+        source:
+          orientation: landscape
+          minimum_pixels: 50000
+          max_upscale: 1.5
+
+  full_screen_single:
+    title: "Full-screen single photograph"
+    canvas:
+      orientation: any
+      background: "#000000"
+      padding: "0"
+      gap: "0"
+      columns: "1fr"
+      rows: "100vh"
+    slideshow:
+      interval_seconds: 20
+      transition_seconds: 1.5
+    selection:
+      minimum_pixels: 220000
+      max_upscale: 1.15
+    exclude:
+      tags:
+        - "ImmichFrame/Ignore"
+      folders: []
+    controls:
+      hide_after_seconds: 7
+    slots:
+      - id: main
+        grid_column: "1"
+        grid_row: "1"
+        fit: contain
+        source:
+          orientation: any
+

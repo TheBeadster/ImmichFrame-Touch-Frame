@@ -1,0 +1,11 @@
+{
+  "listen": "127.0.0.1",
+  "port": 8090,
+  "hub": "192.168.1.20:4242",
+  "sender_display_name": "Photo Frame",
+  "recipient_display_name": "Admin",
+  "heading": "Photo from the frame",
+  "immich_photo_url": "http://192.168.1.50:2283/photos/{asset_id}"
+}
+
+

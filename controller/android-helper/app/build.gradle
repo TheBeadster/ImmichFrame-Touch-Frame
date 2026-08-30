@@ -1,0 +1,21 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'uk.co.manor.immichframe.controller'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'uk.co.manor.immichframe.controller'
+        minSdk 26
+        targetSdk 35
+        versionCode 42
+        versionName '0.1.42'
+    }
+}
+
+dependencies {
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
+}
+

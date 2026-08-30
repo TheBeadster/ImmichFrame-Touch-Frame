@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>Frame Composer</title>
+  <link rel="stylesheet" href="/style.css?v=map-controls-1">
+  <link rel="stylesheet" href="/custom.css">
+</head>
+<body>
+  <main id="frame" aria-live="polite"></main>
+  <section id="map-overlay" class="hidden" aria-label="Photograph location map">
+    <div id="map-tiles"></div>
+    <div id="map-marker" aria-hidden="true"><span></span></div>
+    <div id="map-caption">Photo location</div>
+    <a id="map-attribution" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a>
+  </section>
+  <div id="status">Starting frame…</div>
+  <nav id="controls" class="hidden" aria-label="Frame controls">
+    <button id="previous" aria-label="Previous photographs">◀</button>
+    <button id="pause" aria-label="Pause slideshow">Ⅱ</button>
+    <button id="next" aria-label="Next photographs">▶</button>
+    <button id="layout" aria-label="Change layout">▦</button>
+  </nav>
+  <script type="module" src="/app.js?v=filter-controls-1"></script>
+</body>
+</html>
+

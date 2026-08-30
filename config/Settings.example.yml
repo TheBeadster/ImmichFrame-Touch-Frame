@@ -1,0 +1,20 @@
+General:
+  AuthenticationSecret: null
+  Interval: 20
+  TransitionDuration: 2
+  ShowClock: false
+  ShowProgressBar: false
+  ShowPhotoDate: false
+  ShowImageDesc: false
+  ShowPeopleDesc: false
+  ShowImageLocation: false
+  PlayAudio: false
+  Layout: single
+
+Accounts:
+  - ImmichServerUrl: "http://192.168.1.50:2283"
+    ApiKey: "PASTE_IMMICH_API_KEY_HERE"
+    ShowMemories: false
+    ShowFavorites: false
+
+

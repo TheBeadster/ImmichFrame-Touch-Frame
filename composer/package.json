@@ -1,0 +1,13 @@
+{
+  "name": "immichframe-frame-composer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "yaml": "2.9.0"
+  }
+}
+

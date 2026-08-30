@@ -1,0 +1,11 @@
+config/Settings.yml
+.env
+composer-data/
+**/node_modules/
+**/build/
+**/.gradle/
+**/sender.identity
+**/messages.json
+**/logs/
+**/__pycache__/
+

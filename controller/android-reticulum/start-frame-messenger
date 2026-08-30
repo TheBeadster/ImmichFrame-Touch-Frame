@@ -1,0 +1,16 @@
+#!/data/data/com.termux/files/usr/bin/bash
+umask 077
+termux-wake-lock >/dev/null 2>&1 || true
+STATE="$HOME/.frame-messenger"
+mkdir -p "$STATE"
+exec 9>"$STATE/watchdog.lock"
+flock -n 9 || exit 0
+LOG="$STATE/frame_messenger.log"
+if [ -f "$LOG" ] && [ "$(stat -c %s "$LOG")" -gt 1048576 ]; then
+  mv -f "$LOG" "$STATE/frame_messenger.previous.log"
+fi
+while true; do
+  /data/data/com.termux/files/usr/bin/python "$STATE/frame_messenger.py" >>"$LOG" 2>&1
+  sleep 5
+done
+

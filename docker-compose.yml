@@ -1,0 +1,49 @@
+name: immichframe-touch-frame
+
+services:
+  immichframe:
+    container_name: immichframe
+    image: ghcr.io/immichframe/immichframe:latest
+    restart: unless-stopped
+    ports:
+      - "${HOST_IP}:8080:8080"
+    environment:
+      TZ: Europe/London
+    volumes:
+      - ./config:/app/Config:ro
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+  frame-composer:
+    container_name: immichframe-composer
+    build:
+      context: ./composer
+    restart: unless-stopped
+    depends_on:
+      - immichframe
+    ports:
+      - "${HOST_IP}:8081:8081"
+    environment:
+      TZ: Europe/London
+      IMMICHFRAME_URL: http://immichframe:8080
+      COMPOSER_CONFIG: /config/frame.yml
+      COMPOSER_BLOCKS: /data/blocks.json
+    volumes:
+      - ./composer-config:/config:ro
+      - ./composer-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,noexec,nosuid,nodev
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8081/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+
